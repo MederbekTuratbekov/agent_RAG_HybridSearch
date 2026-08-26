@@ -33,11 +33,3 @@ def load_documents(n: int = 50, seed: int = 42) -> list[dict]:
         })
 
     return documents
-
-
-if __name__ == "__main__":
-    docs = load_documents(n=3)
-    for d in docs:
-        print(f"Title: {d['title']}")
-        print(f"Text: {d['text'][:150]}...")
-        print("---")

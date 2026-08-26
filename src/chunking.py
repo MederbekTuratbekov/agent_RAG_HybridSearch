@@ -84,17 +84,3 @@ def chunk_document(doc: dict, strategy: str = "sentence_based") -> list[dict]:
         for i, chunk_text in enumerate(raw_chunks)
         if len(chunk_text) > 20  # выкидываем совсем короткие мусорные chunks
     ]
-
-
-if __name__ == "__main__":
-    sample_text = (
-        "Python is a programming language. It was created by Guido van Rossum. "
-        "It is widely used for web development, data science, and automation. "
-        "Machine learning libraries like PyTorch and scikit-learn are popular in Python."
-    )
-    sample_doc = {"id": "1", "title": "Python", "text": sample_text}
-
-    print("=== Sentence-based chunks ===")
-    for c in chunk_document(sample_doc, strategy="sentence_based"):
-        print(c["text"])
-        print("---")

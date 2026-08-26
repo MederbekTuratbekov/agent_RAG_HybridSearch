@@ -52,6 +52,8 @@ python evaluate_retrieval.py      # метрики hit_rate
 rag-hybrid-search/
 ├── README.md
 ├── requirements.txt
+├── .env
+├── .env.example
 ├── .gitignore
 └── src/
     ├── main.py

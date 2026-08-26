@@ -66,12 +66,3 @@ def compare_search_methods(eval_queries: list[dict] = None, k: int = 5) -> dict:
         "k": k,
         "num_queries": len(queries),
     }
-
-
-if __name__ == "__main__":
-    report = compare_search_methods(k=5)
-
-    print("=== Retrieval Evaluation ===\n")
-    print(f"Vector search hit_rate@{report['k']}:  {report['vector_search_hit_rate']*100:.1f}%")
-    print(f"Hybrid search hit_rate@{report['k']}:  {report['hybrid_search_hit_rate']*100:.1f}%")
-    print(f"\nНа {report['num_queries']} тестовых запросах")

@@ -64,7 +64,3 @@ def build_full_pipeline():
     insert_chunks(all_chunks)
 
     print("\nГотово. Инструмент search_documents готов к использованию агентом.")
-
-
-if __name__ == "__main__":
-    build_full_pipeline()

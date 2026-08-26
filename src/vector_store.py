@@ -9,13 +9,19 @@ pgvector — расширение PostgreSQL для хранения векто�
     CREATE EXTENSION IF NOT EXISTS vector;
 
 Установка Python-пакетов:
-    pip install openai psycopg2-binary pgvector
+    pip install openai psycopg2-binary pgvector python-dotenv
 """
 
 import os
+from dotenv import load_dotenv
 from openai import OpenAI
 import psycopg2
 from pgvector.psycopg2 import register_vector
+
+# load_dotenv() здесь, а не только в main.py — чтобы файл работал
+# и при прямом запуске (python src/vector_store.py), а не только
+# как импортируемый модуль внутри пайплайна
+load_dotenv()
 
 client = OpenAI()
 EMBEDDING_MODEL = "text-embedding-3-small"  # 1536 измерений, дешёвая и качественная
@@ -145,7 +151,3 @@ def vector_search(query: str, top_k: int = 5) -> list[dict]:
         }
         for row in rows
     ]
-
-
-if __name__ == "__main__":
-    setup_database()

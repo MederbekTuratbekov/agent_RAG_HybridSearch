@@ -113,14 +113,3 @@ def hybrid_search(query: str, top_k: int = 5, alpha: float = 0.5) -> list[dict]:
 
     sorted_results = sorted(combined.values(), key=lambda x: x["final_score"], reverse=True)
     return sorted_results[:top_k]
-
-
-if __name__ == "__main__":
-    query = "programming language for machine learning"
-    results = hybrid_search(query, top_k=3, alpha=0.5)
-
-    print(f"=== Hybrid search: '{query}' ===\n")
-    for r in results:
-        print(f"[{r['final_score']:.3f}] {r['title']} (chunk {r['chunk_index']})")
-        print(f"  {r['text'][:100]}...")
-        print()
