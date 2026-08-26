@@ -31,9 +31,9 @@ load_dotenv()
 SRC_DIR = Path(__file__).parent / "src"
 sys.path.insert(0, str(SRC_DIR))
 
-from data import load_documents
+from data import load_documents_by_titles
 from chunking import chunk_document
-from vector_store import setup_database, insert_chunks
+from vector_store import setup_database, insert_chunks, vector_search
 from hybrid_search import hybrid_search
 from agent_tool import search_documents
 
@@ -60,8 +60,8 @@ def run_pipeline(n_docs: int = 20):
     print("Шаг 2/5: настройка базы данных...")
     setup_database()
 
-    print(f"Шаг 3/5: загрузка {n_docs} документов из wikipedia...")
-    documents = load_documents(n=n_docs)
+    print("Шаг 3/5: загрузка документов из wikipedia по списку заголовков...")
+    documents = load_documents_by_titles()
     print(f"  Загружено документов: {len(documents)}")
 
     print("Шаг 4/5: chunking + эмбеддинги + сохранение в pgvector...")
@@ -73,6 +73,12 @@ def run_pipeline(n_docs: int = 20):
 
     print("Шаг 5/5: проверка hybrid_search...")
     test_query = "programming language for machine learning"
+
+    print("\n--- Сырые результаты чистого vector_search (без нормализации) ---")
+    raw_vector_results = vector_search(test_query, top_k=6)
+    for r in raw_vector_results:
+        print(f"  distance={r['distance']:.4f}  {r['title']} (chunk {r['chunk_index']})")
+
     results = hybrid_search(test_query, top_k=3, alpha=0.5)
 
     print(f"\nРезультаты поиска по запросу: '{test_query}'")
@@ -84,4 +90,4 @@ def run_pipeline(n_docs: int = 20):
 
 
 if __name__ == "__main__":
-    run_pipeline(n_docs=20)
+    run_pipeline()

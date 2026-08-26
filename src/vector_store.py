@@ -41,7 +41,6 @@ def get_connection():
     register_vector(conn)
     return conn
 
-
 def setup_database():
     """
     Создаёт таблицу chunks с векторной колонкой, если её ещё нет.
@@ -129,7 +128,7 @@ def vector_search(query: str, top_k: int = 5) -> list[dict]:
 
     cur.execute(
         """
-        SELECT doc_id, title, chunk_index, text, embedding <=> %s AS distance
+        SELECT doc_id, title, chunk_index, text, embedding <=> %s::vector AS distance
         FROM chunks
         ORDER BY distance
         LIMIT %s

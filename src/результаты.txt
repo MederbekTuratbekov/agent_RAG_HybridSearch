@@ -1,0 +1,54 @@
+C:\Users\Neo\PyCharm\ml\agent\rag-hybrid-search\.venv\Scripts\python.exe C:\Users\Neo\PyCharm\ml\agent\rag-hybrid-search\src\main.py
+Шаг 1/5: проверка переменных окружения...
+Шаг 2/5: настройка базы данных...
+База данных готова: таблица chunks + индекс созданы
+Шаг 3/5: загрузка документов из wikipedia по списку заголовков...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Загружено документов: 15
+Шаг 4/5: chunking + эмбеддинги + сохранение в pgvector...
+  Получено chunks: 146
+Обработано 10/146 chunks
+Обработано 20/146 chunks
+Обработано 30/146 chunks
+Обработано 40/146 chunks
+Обработано 50/146 chunks
+Обработано 60/146 chunks
+Обработано 70/146 chunks
+Обработано 80/146 chunks
+Обработано 90/146 chunks
+Обработано 100/146 chunks
+Обработано 110/146 chunks
+Обработано 120/146 chunks
+Обработано 130/146 chunks
+Обработано 140/146 chunks
+Сохранено 146 chunks в базу
+Шаг 5/5: проверка hybrid_search...
+
+--- Сырые результаты чистого vector_search (без нормализации) ---
+  distance=0.4479  Machine learning (chunk 1)
+  distance=0.4846  Machine learning (chunk 0)
+  distance=0.5333  Machine learning (chunk 3)
+  distance=0.5444  Programming language (chunk 12)
+  distance=0.5510  Machine learning (chunk 2)
+  distance=0.5578  Python (programming language) (chunk 4)
+
+Результаты поиска по запросу: 'programming language for machine learning'
+  [1.000] Machine learning (chunk 1)
+  [0.560] Machine learning (chunk 0)
+  [0.295] Machine learning (chunk 3)
+
+Готово. Инструмент search_documents доступен для агента:
+[Источник: Machine learning]
+Machine learning is done where designing and programming explicit algorithms cannot be done. Examples include spam filtering, detection of network intruders or malicious insiders working towards a data breach, optical character recognition (OCR), search engines and computer vision. Using machine learning has risks. Some algorithms create a final model which is a black box. Models have been criticized for biases in hiring, criminal justice, and recognizing faces.
+
+---
+
+[Источник: Machine learning]
+Machine learning programs will be shown some patterns. These patterns will be an input (such as a question) and an output (the answer to the question). Then, the machine learning program will predict the output based on the input. Machine learning isn't always necessary. Computers can do simple tasks by being told instructions. However, sometimes there are a lot of things that control the output. Then, it is hard for a human to tell the computer all of the instructions.
+
+---
+
+[Источник: Machine learning]
+Machine learning gives computers the ability to learn without being explicitly programmed (Arthur Samuel, 1959). It is a subfield of computer science. The idea came from work in artificial intelligence. Machine learning explores the study and construction of algorithms which can learn and make predictions on data. Such algorithms follow programmed instructions, but can also make predictions or decisions based on data. They build a model from sample inputs.
+
+Process finished with exit code 0

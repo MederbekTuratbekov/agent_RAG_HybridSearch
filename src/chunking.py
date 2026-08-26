@@ -82,5 +82,5 @@ def chunk_document(doc: dict, strategy: str = "sentence_based") -> list[dict]:
             "text": chunk_text,
         }
         for i, chunk_text in enumerate(raw_chunks)
-        if len(chunk_text) > 20  # выкидываем совсем короткие мусорные chunks
+        if len(chunk_text) > 100 and chunk_text.count(",") < 8
     ]
